@@ -53,7 +53,7 @@ li {
   transition: all 250ms ease-in-out;
 }
 
-.club:hover {
+.gym:hover {
   filter: brightness(95%);
 }
 

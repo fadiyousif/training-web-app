@@ -8,13 +8,13 @@ export const GymsList = ({ gyms }) => {
   const gymsPerPage = 10
   const pagesVisited = page * gymsPerPage
 
-  const renderClubs = gyms
+  const renderGyms = gyms
     .slice(pagesVisited, pagesVisited + gymsPerPage)
     .map((gym) => <Gym gym={gym} key={gym.id} />)
 
   return (
     <>
-      <ul className="gyms-list">{renderClubs}</ul>
+      <ul className="gyms-list">{renderGyms}</ul>
 
       {gyms.length > 10 && (
         <Pagination

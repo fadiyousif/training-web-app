@@ -13,7 +13,7 @@ export const DropDown = ({ allGyms, setGyms }) => {
     if (target.value === "all") {
       setGyms(allGyms)
     } else {
-      setGyms(allGyms.filter((club) => club.name === target.value))
+      setGyms(allGyms.filter((gym) => gym.name === target.value))
     }
   }
 
