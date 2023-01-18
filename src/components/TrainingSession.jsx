@@ -1,5 +1,6 @@
 export const TrainingSession = ({ session }) => {
   const { duration, instructors, slots, name } = session
+
   const calculateBookedPercentage = (totalBookable, leftToBook) => {
     const value =
       ((totalBookable - leftToBook) / totalBookable).toFixed(1) * 100
