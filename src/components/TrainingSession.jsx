@@ -1,4 +1,5 @@
 export const TrainingSession = ({ session }) => {
+  const { duration, instructors, slots, name } = session
   const calculateBookedPercentage = (totalBookable, leftToBook) => {
     const value =
       ((totalBookable - leftToBook) / totalBookable).toFixed(1) * 100
@@ -11,18 +12,18 @@ export const TrainingSession = ({ session }) => {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ marginRight: 100 }}>
           <div className="subtitle">
-            {session.duration.start.split("T")[1].slice(0, 5)} -{" "}
-            {session.duration.end.split("T")[1].slice(0, 5)}
+            {duration.start.split("T")[1].slice(0, 5)} -{" "}
+            {duration.end.split("T")[1].slice(0, 5)}
           </div>
 
-          <h4>{session.name}</h4>
+          <h4>{name}</h4>
 
-          {session.instructors.length === 1 ? (
-            <div>Instructor: {session.instructors[0].name}</div>
-          ) : session.instructors.length > 1 ? (
+          {instructors.length === 1 ? (
+            <div>Instructor: {instructors[0].name}</div>
+          ) : instructors.length > 1 ? (
             <div>
               Instructors
-              {session.instructors.map(({ name }, index, arr) =>
+              {instructors.map(({ name }, index, arr) =>
                 index !== arr.length - 1 ? `${name}, ` : name
               )}
             </div>
@@ -31,14 +32,10 @@ export const TrainingSession = ({ session }) => {
 
         <div style={{ textAlign: "right" }}>
           <div>
-            {session.slots.leftToBook} slots left of{" "}
-            {session.slots.totalBookable}
+            {slots.leftToBook} slots left of {slots.totalBookable}
           </div>
           <div>
-            {calculateBookedPercentage(
-              session.slots.totalBookable,
-              session.slots.leftToBook
-            )}
+            {calculateBookedPercentage(slots.totalBookable, slots.leftToBook)}
           </div>
         </div>
       </div>
