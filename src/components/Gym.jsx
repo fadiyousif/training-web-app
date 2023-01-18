@@ -60,11 +60,16 @@ export const Gym = ({ gym }) => {
             {postalCode} {city}
           </div>
 
-          <DatePicker date={date} setDate={setDate} />
-
           {loading && <Loader />}
 
-          <TrainingSessionsList sessions={sessions} date={date} />
+          {sessions.length < 1 && !loading ? (
+            <div style={{ marginTop: 20 }}>No group sessions available</div>
+          ) : (
+            <>
+              <DatePicker date={date} setDate={setDate} />
+              <TrainingSessionsList sessions={sessions} date={date} />
+            </>
+          )}
         </>
       )}
     </li>
