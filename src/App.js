@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react"
+import { LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment"
+import { DropDown } from "./components/DropDown"
+import { GymsList } from "./components/GymsList"
+import "./App.css"
 
-function App() {
+export const App = () => {
+  const [gyms, setGyms] = useState([])
+  const [allGyms, setAllGyms] = useState([])
+
+  useEffect(() => {
+    fetch("https://stc.brpsystems.com/brponline/api/ver3/businessunits")
+      .then((res) => res.json())
+      .then((data) => {
+        setGyms(data)
+        setAllGyms(data)
+      })
+      .catch((err) => console.error(err))
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <LocalizationProvider dateAdapter={AdapterMoment}>
+      <div className="app">
+        <h1 style={{ marginBottom: 40 }}>Training Web App</h1>
+        <DropDown allGyms={allGyms} setGyms={setGyms} />
+        <GymsList gyms={gyms} />
+      </div>
+    </LocalizationProvider>
+  )
 }
-
-export default App;
