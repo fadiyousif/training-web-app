@@ -3,7 +3,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment"
 import { DropDown } from "./components/DropDown"
 import { GymsList } from "./components/GymsList"
-import "./App.css"
 
 export const App = () => {
   const [gyms, setGyms] = useState([])
